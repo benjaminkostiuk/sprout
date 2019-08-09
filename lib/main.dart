@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './plant.dart';
-import './custom_icons_icons.dart';
+import './widgets/plant.dart';
+import './icons/custom_icons_icons.dart';
 
 void main() => runApp(PlantApp());
 

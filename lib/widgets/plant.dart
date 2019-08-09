@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import './custom_icons_icons.dart';
+import '../icons/custom_icons_icons.dart';
 
 class Plant {
   String name;
