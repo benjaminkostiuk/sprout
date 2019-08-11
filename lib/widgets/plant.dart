@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import '../icons/custom_icons_icons.dart';
+import 'package:plant_life/icons/custom_icons_icons.dart';
 
 class Plant {
   String name;
@@ -17,14 +17,79 @@ class Plant {
   }
 }
 
+// children: <Widget>[
+      //   Stack(
+      //     children: <Widget>[
+      //       Card(
+      //         margin:
+      //             EdgeInsets.only(right: 0.0, left: 0.0, top: 5.0, bottom: 5.0),
+      //         shape: RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.all(Radius.circular(18.0)),
+      //         ),
+      //         color: _backCardColor,
+      //         child: Row(
+      //           children: <Widget>[
+      //             Container(
+      //               width: 55.0,
+      //               height: 65.0,
+      //               margin: EdgeInsets.only(
+      //                   top: 7.0, left: 12.0, bottom: 7.0, right: 15.0),
+      //             )
+      //           ],
+      //         ),
+      //       ),
+      //       Dismissible(
+      //         key: Key('100'),
+      //         onDismissed: (direction) {
+      //           setState(() {
+      //             plantCards.removeAt(0);
+      //           });
+      //         },
+      //         background: Card(
+      //           margin: EdgeInsets.only(
+      //               right: 0.0, left: 0.0, top: 5.0, bottom: 5.0),
+      //           elevation: 0.0,
+      //           shape: RoundedRectangleBorder(
+      //             borderRadius: BorderRadius.all(Radius.circular(18.0)),
+      //           ),
+      //           color: Colors.grey[300],
+      //         ),
+      //         secondaryBackground: Card(
+      //           margin: EdgeInsets.only(
+      //               right: 0.0, left: 0.0, top: 5.0, bottom: 5.0),
+      //           elevation: 0.0,
+      //           shape: RoundedRectangleBorder(
+      //             borderRadius: BorderRadius.all(Radius.circular(18.0)),
+      //           ),
+      //           color: Colors.lightGreen[300],
+      //         ),
+      //         child: GestureDetector(child: plantCards[0], onPanUpdate: (details) {
+      //           // Swipe right
+      //           if(details.delta.dx > 0) {
+      //             setState(() {
+      //                 _backCardColor = Colors.grey[300];
+      //             });
+      //           } else if(details.delta.dx < 0) {
+      //             setState(() {
+      //                  _backCardColor = Colors.lightGreen[300];
+      //             });
+      //           }
+      //         },)
+      //       ),
+      //     ],
+      //   ),
+      // ],
+
+
 class PlantCard extends StatelessWidget {
   final Plant plant;
 
-  PlantCard(this.plant);
+  PlantCard(this.plant, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.only(right: 0.0, left: 0.0, top: 5.0, bottom: 5.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(18.0)),
       ),
