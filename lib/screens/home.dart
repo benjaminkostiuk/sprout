@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage>
   // Used for keeping track of tabs
   int _selectedIndex = 0;
   List<Widget> _tabs = <Widget>[
-    WateringTest(),
+    WateringList(),
     Container(),
   ];
 
