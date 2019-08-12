@@ -115,7 +115,7 @@ class DaySection extends StatelessWidget {
 
     return Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: sectionList);
   }
 }
@@ -184,7 +184,7 @@ class _WateringListState extends State<WateringList> {
                 SizedBox(
                   width: double.infinity,
                   child: Container(
-                    height: 225.0,
+                    height: 245.0,
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: ClipRRect(
@@ -243,7 +243,7 @@ class _WateringListState extends State<WateringList> {
                           right: 5.0,
                         ),
                         color: Colors.transparent,
-                        alignment: Alignment.topCenter,
+                        alignment: Alignment.topLeft,
                         child: Column(
                             // List of sections
                             children: plantData

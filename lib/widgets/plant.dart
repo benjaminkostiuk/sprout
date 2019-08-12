@@ -20,9 +20,7 @@ class Plant {
 class PlantCard extends StatelessWidget {
   final Plant plant;
 
-
   PlantCard(this.plant, {Key key}) : super(key: key);
- 
 
   @override
   Widget build(BuildContext context) {
