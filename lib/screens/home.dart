@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage>
     super.initState();
   }
 
-  void animate() {
+  void animateFabMenu() {
     if (!_isOpened) {
       _animationController.forward();
     } else {
@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage>
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             backgroundColor: _animateBackgroundColor.value,
-            onPressed: animate,
+            onPressed: animateFabMenu,
             tooltip: 'Add',
             child: Icon(
               Icons.add,
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage>
                 setState(() {
                   // Close the sub menu if opened before switching tabs
                   if (_isOpened && index != _selectedIndex) {
-                    animate();
+                    animateFabMenu();
                   }
                   _selectedIndex = index;
                 });
