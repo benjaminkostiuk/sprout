@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plant_life/screens/plant_details.dart';
 
-import '../widgets/plant.dart';
+import 'package:plant_life/widgets/plant.dart';
 
 class DayHeader extends StatelessWidget {
   final String title;
@@ -56,13 +55,7 @@ class DaySection extends StatelessWidget {
                 onDismissed: (direction) {
                   onRemovePlantCard(sectionTitle, i);
                 },
-                background: Card(
-                  margin: EdgeInsets.only(
-                      right: 0.0, left: 0.0, top: 5.0, bottom: 5.0),
-                  elevation: 0.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(18.0)),
-                  ),
+                background: PlantCardBody(
                   color: Colors.grey[400],
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -80,13 +73,7 @@ class DaySection extends StatelessWidget {
                     ],
                   ),
                 ),
-                secondaryBackground: Card(
-                  margin: EdgeInsets.only(
-                      right: 0.0, left: 0.0, top: 5.0, bottom: 5.0),
-                  elevation: 0.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(18.0)),
-                  ),
+                secondaryBackground: PlantCardBody(
                   color: Colors.lightGreen[300],
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -126,6 +113,7 @@ class WateringList extends StatefulWidget {
 }
 
 class _WateringListState extends State<WateringList> {
+  // Holds plant data
   Map<String, List<PlantCard>> plantData = {
     'Missed': [
       PlantCard(
@@ -165,9 +153,7 @@ class _WateringListState extends State<WateringList> {
 
   // Removed the dismissed from the corresponding day at its index
   void removeCard(String day, int index) {
-    setState(() {
-      plantData[day].removeAt(index);
-    });
+    setState(() => plantData[day].removeAt(index));
   }
 
   @override
@@ -202,29 +188,9 @@ class _WateringListState extends State<WateringList> {
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                      top: 60.0, left: 15.0, right: 15.0, bottom: 40.0),
+                      top: 120.0, left: 15.0, right: 15.0, bottom: 40.0),
                   child: Column(
                     children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: FloatingActionButton(
-                                heroTag: null,
-                                backgroundColor: Colors.white,
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/details');
-                                },
-                                child: Icon(
-                                  Icons.calendar_today,
-                                  color: Colors.green[400],
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
                       Row(
                         children: <Widget>[
                           Text(
