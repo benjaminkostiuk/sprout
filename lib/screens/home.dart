@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rect_getter/rect_getter.dart';
 
+import 'package:plant_life/screens/calendar.dart';
 import 'package:plant_life/widgets/submenu.dart';
 import 'package:plant_life/widgets/wateringlist.dart';
-import 'package:plant_life/screens/plant_details.dart';
+
 
 import 'package:plant_life/icons/custom_icons_icons.dart';
 
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage>
 
   void _goToCalendarPage() {
     Navigator.of(context)
-        .push(FadeRouteBuilder(page: PlantDetails()))
+        .push(FadeRouteBuilder(page: CalendarPage()))
         .then((_) => setState(() => rect = null));
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:plant_life/widgets/plant.dart';
+import 'package:plant_life/widgets/plantcard.dart';
+import 'package:plant_life/models/plant.dart';
 
 class DayHeader extends StatelessWidget {
   final String title;

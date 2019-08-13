@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:plant_life/screens/plant_details.dart';
 
-import './screens/home.dart';
-import './screens/plant_details.dart';
+import 'package:plant_life/screens/add_plant.dart';
+import 'package:plant_life/screens/calendar.dart';
+import 'package:plant_life/screens/details.dart';
+import 'package:plant_life/screens/home.dart';
+
 
 void main() => runApp(PlantApp());
 
@@ -15,7 +17,9 @@ class PlantApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
-        '/details': (context) => PlantDetails(),
+        // '/details': (context) => PlantDetails(),
+        '/calendar': (context) => CalendarPage(),
+        '/add': (context) => PlantAddPage(''),
       },
     );
   }

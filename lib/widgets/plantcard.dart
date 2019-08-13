@@ -1,21 +1,8 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+
 import 'package:plant_life/icons/custom_icons_icons.dart';
-
-class Plant {
-  String name;
-  String location;
-  int waterConsumption;
-  String assetName;
-  double currentPercentage;
-  bool _isDry;
-
-  Plant(this.name, this.location, this.waterConsumption, this.assetName,
-      this.currentPercentage) {
-    _isDry = (currentPercentage > 0) ? false : true;
-  }
-}
+import 'package:plant_life/models/plant.dart';
 
 class PlantCard extends StatelessWidget {
   final Plant plant;
@@ -106,7 +93,7 @@ class PlantCard extends StatelessWidget {
               ],
             ),
           ),
-          DropletIndicator(plant.currentPercentage, plant._isDry),
+          DropletIndicator(plant.currentPercentage, plant.isDry),
         ],
       ),
     );
