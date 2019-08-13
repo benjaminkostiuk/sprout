@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:plant_life/icons/custom_icons_icons.dart';
 import 'package:plant_life/models/plant.dart';
+import 'package:plant_life/screens/details.dart';
 
 class PlantCard extends StatelessWidget {
   final Plant plant;
@@ -11,90 +12,99 @@ class PlantCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PlantCardBody(
-      color: Colors.white,
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 55.0,
-            height: 65.0,
-            margin:
-                EdgeInsets.only(top: 7.0, left: 12.0, bottom: 7.0, right: 15.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                plant.assetName,
-                fit: BoxFit.fitHeight,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PlantDetails(plant)));
+      },
+      child: PlantCardBody(
+        color: Colors.white,
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 55.0,
+              height: 65.0,
+              margin: EdgeInsets.only(
+                  top: 7.0, left: 12.0, bottom: 7.0, right: 15.0),
+              child: Hero(
+                tag: plant.heroTag,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    plant.assetName,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text(
-                      plant.name,
-                      style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 5.0),
-                ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            CustomIcons.location,
-                            size: 20.0,
-                            color: Colors.grey[500],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: 4.0),
-                          ),
-                          Text(
-                            plant.location,
-                            style: TextStyle(
-                                fontSize: 13.0, color: Colors.grey[500]),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        children: <Widget>[
-                          Icon(
-                            CustomIcons.watering,
-                            size: 20.0,
-                            color: Colors.grey[500],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: 4.0),
-                          ),
-                          Text(
-                            plant.waterConsumption.toString() + ' ml',
-                            style: TextStyle(
-                              fontSize: 13.0,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        plant.name,
+                        style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 5.0),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              CustomIcons.location,
+                              size: 20.0,
                               color: Colors.grey[500],
                             ),
-                          )
-                        ],
+                            Padding(
+                              padding: EdgeInsets.only(right: 4.0),
+                            ),
+                            Text(
+                              plant.location,
+                              style: TextStyle(
+                                  fontSize: 13.0, color: Colors.grey[500]),
+                            ),
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                ),
-              ],
+                      Expanded(
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              CustomIcons.watering,
+                              size: 20.0,
+                              color: Colors.grey[500],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(right: 4.0),
+                            ),
+                            Text(
+                              plant.waterConsumption.toString() + ' ml',
+                              style: TextStyle(
+                                fontSize: 13.0,
+                                color: Colors.grey[500],
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          DropletIndicator(plant.currentPercentage, plant.isDry),
-        ],
+            DropletIndicator(plant.currentPercentage, plant.isDry),
+          ],
+        ),
       ),
     );
   }
