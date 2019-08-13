@@ -5,7 +5,6 @@ import 'package:plant_life/screens/calendar.dart';
 import 'package:plant_life/widgets/submenu.dart';
 import 'package:plant_life/widgets/wateringlist.dart';
 
-
 import 'package:plant_life/icons/custom_icons_icons.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,12 +16,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  // Used for keeping track of tabs
-  int _selectedIndex = 0;
-  List<Widget> _tabs = <Widget>[
-    WateringList(),
-    Container(),
-  ];
+  // Used for pageinagtion of home page
+  PageController _pageController;
+  int _selectedIndex =
+      0; // Keeps track of the selected index for the bottom bar
 
   // Animation information for FAB SubMenu
   bool _isOpened = false;
@@ -74,6 +71,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
+    //Initialize page controller
+    _pageController = PageController(initialPage: 0, keepPage: false);
     // Initialize animation controller
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300))
@@ -112,9 +111,20 @@ class _HomePageState extends State<HomePage>
     _isOpened = !_isOpened;
   }
 
+  void _updatePageChange(int index) {
+    setState(() {
+      // Close the sub menu if opened before switching tabs
+      if (_isOpened && index != _selectedIndex) {
+        animateFabMenu();
+      }
+      _selectedIndex = index;
+    });
+  }
+
   @override
   void dispose() {
     _animationController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -141,16 +151,16 @@ class _HomePageState extends State<HomePage>
             clipBehavior: Clip.antiAlias,
             child: BottomNavigationBar(
               currentIndex: _selectedIndex,
-              selectedItemColor: Colors.lightGreen,
+              selectedIconTheme: IconThemeData(
+                color: Colors.lightGreen,
+                size: 28.0,
+              ),
               unselectedItemColor: Colors.grey,
               onTap: (int index) {
-                setState(() {
-                  // Close the sub menu if opened before switching tabs
-                  if (_isOpened && index != _selectedIndex) {
-                    animateFabMenu();
-                  }
-                  _selectedIndex = index;
-                });
+                _pageController.animateToPage(index,
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.easeInOut);
+                _updatePageChange(index);
               },
               items: [
                 BottomNavigationBarItem(
@@ -178,7 +188,16 @@ class _HomePageState extends State<HomePage>
           ),
           body: Stack(
             children: <Widget>[
-              _tabs.elementAt(_selectedIndex),
+              PageView(
+                controller: _pageController,
+                onPageChanged: _updatePageChange,
+                children: <Widget>[
+                  WateringList(),
+                  Container(
+                    color: Colors.grey[200],
+                  ),
+                ],
+              ),
               Row(
                 children: <Widget>[
                   Expanded(
