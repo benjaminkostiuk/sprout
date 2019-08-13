@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
@@ -142,12 +143,13 @@ class _DropletIndicatorState extends State<DropletIndicator>
     with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<double> _animatePercentage;
+  Timer _delay;
 
   @override
   void initState() {
     // Initialize animation controller
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 1400))
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 1600))
           ..addListener(() {
             setState(() {});
           });
@@ -158,8 +160,13 @@ class _DropletIndicatorState extends State<DropletIndicator>
       CurvedAnimation(parent: _animationController, curve: Curves.ease),
     );
     // Make the animation run
-    _animationController.forward();
     super.initState();
+    // Delay so the user can see some of the animation when switching screens
+    _delay = Timer(const Duration(milliseconds: 100), () {
+      _animationController.forward();
+    });
+
+
   }
 
   @override
