@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage>
   GlobalKey rectGetterKey = RectGetter.createGlobalKey();
   Rect rect;
 
-  void _onTap() async {
+  void _onCalendarIconTap() async {
     setState(() => rect = RectGetter.getRectFromKey(rectGetterKey));
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() =>
@@ -210,9 +210,7 @@ class _HomePageState extends State<HomePage>
                           child: FloatingActionButton(
                             heroTag: null,
                             backgroundColor: Colors.white,
-                            onPressed: () {
-                              _onTap();
-                            },
+                            onPressed: () => _onCalendarIconTap(),
                             child: Icon(
                               Icons.calendar_today,
                               color: Colors.green[400],
