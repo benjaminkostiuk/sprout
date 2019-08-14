@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:plant_life/screens/add_plant.dart';
+import 'package:plant_life/screens/add.dart';
 import 'package:plant_life/screens/calendar.dart';
 import 'package:plant_life/screens/details.dart';
 import 'package:plant_life/screens/home.dart';
