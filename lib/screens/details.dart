@@ -14,13 +14,25 @@ class PlantDetails extends StatefulWidget {
   State<StatefulWidget> createState() => _PlantDetailsState();
 }
 
-class _PlantDetailsState extends State<PlantDetails> {
+class _PlantDetailsState extends State<PlantDetails>
+    with SingleTickerProviderStateMixin {
   double _panelPosition; // To keep track of the pannel's position
   Timer _timer; // Used for the delay to create a sliding animation
+  PanelController _panelController;
+
+  AnimationController _animationController;
+  Animation<double> _animationValue;
 
   @override
   void initState() {
+    _panelController = PanelController();
+     _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 730))
+          ..addListener(() {
+            setState(() {});
+          });
     super.initState();
+   
   }
 
   @override
@@ -33,11 +45,20 @@ class _PlantDetailsState extends State<PlantDetails> {
     double minimumPanelHeight = MediaQuery.of(context).size.height / 2.3;
     double maximumPanelHeight = MediaQuery.of(context).size.height / 1.2;
 
+    _animationValue = Tween<double>(begin: 0.0, end: minimumPanelHeight)
+        .animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOut,
+    ));
+    _animationController.forward();
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
           SlidingUpPanel(
-            minHeight: minimumPanelHeight,
+            controller: _panelController,
+            renderPanelSheet: true,
+            minHeight: _animationValue.value ?? 0,
             maxHeight: maximumPanelHeight,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(30.0),
@@ -48,6 +69,7 @@ class _PlantDetailsState extends State<PlantDetails> {
             onPanelSlide: (double pos) {
               // Adding a timer creates a "jiggle effect" with the FAB droplet indicator
               // TODO change to an animation maybe Transition(Matrix 4)?
+
               _timer = Timer(Duration(milliseconds: 1), () {
                 setState(() {
                   _panelPosition = minimumPanelHeight -
@@ -58,6 +80,7 @@ class _PlantDetailsState extends State<PlantDetails> {
             },
             panel: DetailsBody(widget.plant),
             body: Container(
+              color: Colors.transparent,
               child: Column(
                 children: <Widget>[
                   Stack(
@@ -91,7 +114,7 @@ class _PlantDetailsState extends State<PlantDetails> {
             ),
           ),
           Positioned(
-            bottom: _panelPosition ?? minimumPanelHeight - 40,
+            bottom: _panelPosition ?? _animationValue.value - 40,
             left: MediaQuery.of(context).size.width / 1.4,
             child: Container(
               height: 85.0,
