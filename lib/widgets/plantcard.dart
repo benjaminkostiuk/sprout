@@ -103,7 +103,10 @@ class PlantCard extends StatelessWidget {
                 ],
               ),
             ),
-            DropletIndicator(plant.currentPercentage, plant.isDry),
+            Container(
+              margin: EdgeInsets.only(right: 25.0),
+              child: DropletIndicator(plant.currentPercentage, plant.isDry),
+            )
           ],
         ),
       ),
@@ -148,25 +151,23 @@ class _DropletIndicatorState extends State<DropletIndicator>
   @override
   void initState() {
     // Initialize animation controller
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 1600))
-          ..addListener(() {
-            setState(() {});
-          });
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1600))
+      ..addListener(() {
+        setState(() {});
+      });
 
     // Setup the animation for the _filledPercentage to increase
     _animatePercentage =
         Tween<double>(begin: 0.0, end: widget.percentage).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.ease),
     );
-    // Make the animation run
+
     super.initState();
     // Delay so the user can see some of the animation when switching screens
     _delay = Timer(const Duration(milliseconds: 100), () {
       _animationController.forward();
     });
-
-
   }
 
   @override
@@ -177,17 +178,14 @@ class _DropletIndicatorState extends State<DropletIndicator>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 25.0),
-      child: CustomPaint(
-        foregroundPainter: DropletPainter(_animatePercentage.value),
-        child: Padding(
-          padding: const EdgeInsets.all(13.5),
-          child: Icon(
-            CustomIcons.droplet,
-            size: 25.0,
-            color: widget.isDry ? Colors.grey[500] : Colors.lightGreen[400],
-          ),
+    return CustomPaint(
+      foregroundPainter: DropletPainter(_animatePercentage.value),
+      child: Padding(
+        padding: const EdgeInsets.all(13.5),
+        child: Icon(
+          CustomIcons.droplet,
+          size: 25.0,
+          color: widget.isDry ? Colors.grey[500] : Colors.lightGreen[400],
         ),
       ),
     );
