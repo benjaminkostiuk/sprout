@@ -147,7 +147,7 @@ class DetailsBody extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 20.0, bottom: 3.0),
+            padding: EdgeInsets.only(top: 35.0, bottom: 3.0),
             child: Column(
               children: <Widget>[
                 Container(
@@ -160,7 +160,7 @@ class DetailsBody extends StatelessWidget {
                         plant.name,
                         style: TextStyle(
                             color: Colors.grey[600],
-                            fontSize: 30.0,
+                            fontSize: 26.0,
                             fontWeight: FontWeight.w600),
                       ),
                       Text(

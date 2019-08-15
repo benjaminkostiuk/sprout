@@ -195,11 +195,18 @@ class _WateringListState extends State<WateringList> {
                       Row(
                         children: <Widget>[
                           Text(
-                            'Hi Natalie!',
+                            'Hi',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 45.0,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w300),
+                          ),
+                          Text(
+                            ' Natalie!',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 45.0,
+                                fontWeight: FontWeight.w500),
                           ),
                         ],
                       ),
