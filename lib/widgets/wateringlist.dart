@@ -146,7 +146,7 @@ class _WateringListState extends State<WateringList> {
         key: Key('105'),
       ),
       PlantCard(
-        Plant('Ficus', 'Kitchen', 90, 'assets/aloe_vera.jpg', 60),
+        Plant('Ficus', 'Kitchen', 90, 'assets/plant2.jpg', 60),
         key: Key('106'),
       ),
     ]
@@ -206,7 +206,7 @@ class _WateringListState extends State<WateringList> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 45.0,
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),

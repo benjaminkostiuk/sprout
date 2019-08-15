@@ -47,7 +47,8 @@ class _HomePageState extends State<HomePage>
   }
 
   void _goToCalendarPage() {
-    if(_isOpened) { animateFabMenu(); };  // Close the menu
+    closeFabMenu();
+    // Close the menu
     Navigator.of(context)
         .push(FadeRouteBuilder(page: CalendarPage()))
         .then((_) => setState(() => rect = null));
@@ -105,25 +106,40 @@ class _HomePageState extends State<HomePage>
     super.initState();
   }
 
-  void animateFabMenu() {
-    if (!_isOpened) {
-      _hideElevation = false;
-      _animationController.forward();
-    } else {
+  void closeFabMenu() {
+    if (_isOpened) {
+      //Check if open
       _animationController.reverse();
       // Add a delay otherwise the shadow of FABs doesn't look right
-      Timer delay = Timer(Duration(milliseconds: 150), () { 
+      Timer delay = Timer(Duration(milliseconds: 150), () {
         _hideElevation = true;
       });
+      _isOpened = false;
     }
-    _isOpened = !_isOpened;
+  }
+
+  void openFabMenu() {
+    if (!_isOpened) {
+      // Check if closed
+      _hideElevation = false;
+      _animationController.forward();
+      _isOpened = true;
+    }
+  }
+
+  void animateFabMenu() {
+    if (_isOpened) {
+      closeFabMenu();
+    } else {
+      openFabMenu();
+    }
   }
 
   void _updatePageChange(int index) {
     setState(() {
       // Close the sub menu if opened before switching tabs
-      if (_isOpened && index != _selectedIndex) {
-        animateFabMenu();
+      if (index != _selectedIndex) {
+        closeFabMenu();
       }
       _selectedIndex = index;
     });
@@ -233,6 +249,7 @@ class _HomePageState extends State<HomePage>
               FabSubMenu(
                 transition: _transition.value,
                 hideElevation: _hideElevation,
+                // onItemSelected: _goToCalendarPage,
               ),
             ],
           ),

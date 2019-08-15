@@ -8,13 +8,14 @@ class FabSubMenuItem extends StatelessWidget {
   final IconData iconData;
   final String tooltip;
   final double elevation;
+  final onTap;
 
-  FabSubMenuItem({this.tooltip, this.iconData, this.elevation});
+  FabSubMenuItem({this.tooltip, this.iconData, this.elevation, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {},   // This currently does not work but will be patched (so dumb) https://stackoverflow.com/questions/54653849/floatingactionbutton-onpressed-not-triggering
       backgroundColor: Colors.white,
       tooltip: tooltip,
       elevation: elevation,
@@ -31,8 +32,9 @@ class FabSubMenuItem extends StatelessWidget {
 class FabSubMenu extends StatelessWidget {
   final double transition;
   final bool hideElevation;
+  final onItemSelected;
 
-  FabSubMenu({this.transition, this.hideElevation});
+  FabSubMenu({this.transition, this.hideElevation, this.onItemSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +60,7 @@ class FabSubMenu extends StatelessWidget {
                     transform: Matrix4.translationValues(
                         transition / 1.2, transition / 1.8, 0.0),
                     child: FabSubMenuItem(
+                      onTap: onItemSelected,
                       tooltip: 'Add Plant',
                       iconData: CustomIcons.plant,
                       elevation: _subMenuElevation,
@@ -66,6 +69,7 @@ class FabSubMenu extends StatelessWidget {
                   Transform(
                     transform: Matrix4.translationValues(0, transition, 0.0),
                     child: FabSubMenuItem(
+                      onTap: onItemSelected,
                       tooltip: 'Add droplet',
                       iconData: CustomIcons.droplet,
                       elevation: _subMenuElevation,
@@ -75,6 +79,7 @@ class FabSubMenu extends StatelessWidget {
                     transform: Matrix4.translationValues(
                         -transition / 1.2, transition / 1.8, 0.0),
                     child: FabSubMenuItem(
+                      onTap: onItemSelected,
                       tooltip: 'Add Watering Schedule',
                       iconData: CustomIcons.watering,
                       elevation: _subMenuElevation,
