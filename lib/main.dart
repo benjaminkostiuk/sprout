@@ -17,7 +17,7 @@ class PlantApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
-        // '/details': (context) => PlantDetails(),
+        '/details': (context) => PlantDetails(null),
         '/calendar': (context) => CalendarPage(),
         '/add': (context) => PlantAddPage(''),
       },
