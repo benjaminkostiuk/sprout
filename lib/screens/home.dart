@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rect_getter/rect_getter.dart';
 
@@ -23,6 +24,7 @@ class _HomePageState extends State<HomePage>
 
   // Animation information for FAB SubMenu
   bool _isOpened = false;
+  bool _hideElevation = true;
   AnimationController _animationController;
   Animation<Color> _animateBackgroundColor;
   Animation<Color> _animateForegroundColor;
@@ -104,9 +106,14 @@ class _HomePageState extends State<HomePage>
 
   void animateFabMenu() {
     if (!_isOpened) {
+      _hideElevation = false;
       _animationController.forward();
     } else {
       _animationController.reverse();
+      // Add a delay otherwise the shadow of FABs doesn't look right
+      Timer delay = Timer(Duration(milliseconds: 150), () { 
+        _hideElevation = true;
+      });
     }
     _isOpened = !_isOpened;
   }
@@ -224,7 +231,7 @@ class _HomePageState extends State<HomePage>
               ),
               FabSubMenu(
                 transition: _transition.value,
-                hideElevation: !_isOpened,
+                hideElevation: _hideElevation,
               ),
             ],
           ),
