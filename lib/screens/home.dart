@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage>
   Curve _curve = Curves.easeOut;
 
   // Information for calendar button transition
-  final Duration animationDuration = Duration(milliseconds: 550);
-  final Duration delay = Duration(milliseconds: 300);
+  final Duration _calendarAnimationDuration = Duration(milliseconds: 450);
+  final Duration _delay = Duration(milliseconds: 300);
   GlobalKey rectGetterKey = RectGetter.createGlobalKey();
   Rect rect;
 
@@ -42,11 +42,12 @@ class _HomePageState extends State<HomePage>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() =>
           rect = rect.inflate(1.3 * MediaQuery.of(context).size.longestSide));
-      Future.delayed(animationDuration + delay, _goToCalendarPage);
+      Future.delayed(_calendarAnimationDuration + _delay, _goToCalendarPage);
     });
   }
 
   void _goToCalendarPage() {
+    if(_isOpened) { animateFabMenu(); };  // Close the menu
     Navigator.of(context)
         .push(FadeRouteBuilder(page: CalendarPage()))
         .then((_) => setState(() => rect = null));
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage>
       return Container();
     }
     return AnimatedPositioned(
-      duration: animationDuration,
+      duration: _calendarAnimationDuration,
       left: rect.left,
       right: MediaQuery.of(context).size.width - rect.right,
       top: rect.top,
