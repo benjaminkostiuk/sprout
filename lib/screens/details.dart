@@ -148,20 +148,36 @@ class DetailsBody extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 20.0, bottom: 3.0),
-            child: Row(
+            child: Column(
               children: <Widget>[
-                Text(
-                  plant.name,
-                  style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w600),
-                )
+                Container(
+                  child: Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 15.0,
+                    runSpacing: 2.0,
+                    children: <Widget>[
+                      Text(
+                        plant.name,
+                        style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        '(Echinocactus Cereus)',
+                        style: TextStyle(
+                            color: Colors.grey[400],
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 5.0),
+            padding: EdgeInsets.only(bottom: 5.0, top: 5.0),
             child: Row(
               children: <Widget>[
                 Padding(

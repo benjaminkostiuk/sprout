@@ -128,7 +128,7 @@ class _WateringListState extends State<WateringList> {
     ],
     'Today': [
       PlantCard(
-        Plant('Cactus', 'Kitchen', 75, 'assets/thorny-plant.jpg', 85),
+        Plant('My Cactus', 'Kitchen', 75, 'assets/thorny-plant.jpg', 85),
         key: Key('102'),
       ),
       PlantCard(
