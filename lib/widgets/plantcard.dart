@@ -23,10 +23,12 @@ class PlantCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Container(
+              //color: Colors.red,
               width: 55.0,
-              height: 65.0,
+              height: 70.0,
+              padding: EdgeInsets.only(bottom: 8.0),
               margin: EdgeInsets.only(
-                  top: 7.0, left: 12.0, bottom: 7.0, right: 15.0),
+                  top: 5.0, left: 12.0, bottom: 5.0, right: 12.0),
               child: Hero(
                 tag: plant.heroTag,
                 child: ClipRRect(

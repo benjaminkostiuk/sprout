@@ -118,11 +118,11 @@ class _WateringListState extends State<WateringList> {
   Map<String, List<PlantCard>> plantData = {
     'Missed': [
       PlantCard(
-        Plant('Echeveria', 'Kitchen', 100, 'assets/plant2.jpg', 0),
+        Plant('Echeveria', 'Kitchen', 100, 'assets/planticon2.png', 0),
         key: Key('100'),
       ),
       PlantCard(
-        Plant('Hyacinth', 'Kitchen', 90, 'assets/plant3.jpg', 0),
+        Plant('Hyacinth', 'Kitchen', 90, 'assets/planticon2.png', 0),
         key: Key('101'),
       ),
     ],
