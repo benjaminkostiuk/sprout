@@ -26,13 +26,12 @@ class _PlantDetailsState extends State<PlantDetails>
   @override
   void initState() {
     _panelController = PanelController();
-     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 730))
+    _animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500))
           ..addListener(() {
             setState(() {});
           });
     super.initState();
-   
   }
 
   @override
@@ -42,7 +41,8 @@ class _PlantDetailsState extends State<PlantDetails>
 
   @override
   Widget build(BuildContext context) {
-    double minimumPanelHeight = MediaQuery.of(context).size.height / 2.3;
+    //double minimumPanelHeight = MediaQuery.of(context).size.height / 2.3;
+    double minimumPanelHeight = 50;
     double maximumPanelHeight = MediaQuery.of(context).size.height / 1.2;
 
     _animationValue = Tween<double>(begin: 0.0, end: minimumPanelHeight)
@@ -69,7 +69,6 @@ class _PlantDetailsState extends State<PlantDetails>
             onPanelSlide: (double pos) {
               // Adding a timer creates a "jiggle effect" with the FAB droplet indicator
               // TODO change to an animation maybe Transition(Matrix 4)?
-
               _timer = Timer(Duration(milliseconds: 1), () {
                 setState(() {
                   _panelPosition = minimumPanelHeight -
@@ -78,39 +77,22 @@ class _PlantDetailsState extends State<PlantDetails>
                 });
               });
             },
-            panel: DetailsBody(widget.plant),
-            body: Container(
-              color: Colors.transparent,
-              child: Column(
-                children: <Widget>[
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        height: MediaQuery.of(context).size.height / 1.65,
-                        child: Hero(
-                          tag: widget.plant.heroTag,
-                          child: Image.asset(
-                            widget.plant.assetName,
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
-                      ),
-                      AppBar(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0.0,
-                        iconTheme:
-                            IconThemeData(color: Colors.grey, size: 30.0),
-                        actions: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(right: 15.0),
-                            child: Icon(Icons.more_vert),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            panel: DetailsCard(widget.plant),
+            body: Stack(
+              children: <Widget>[
+                DetailsBody(widget.plant),
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0.0,
+                  iconTheme: IconThemeData(color: Colors.white, size: 30.0),
+                  actions: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(right: 15.0),
+                      child: Icon(Icons.more_vert),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           Positioned(
@@ -140,6 +122,108 @@ class DetailsBody extends StatelessWidget {
   final Plant plant;
 
   DetailsBody(this.plant);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        child: ListView(
+          children: <Widget>[
+            Container(
+              //height: MediaQuery.of(context).size.height / 2.5,
+              padding: EdgeInsets.only(top: 50, left: 30.0, right: 5.0),
+              decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(45.0),
+                  )),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(top: 35.0, bottom: 7.0),
+                              child: Text(
+                                plant.name,
+                                style: TextStyle(
+                                    color: Colors.grey[700],
+                                    fontSize: 28.0,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(top: 0.0, bottom: 5.0),
+                              child: Text(
+                                '(Echinocactus Cereus)',
+                                style: TextStyle(
+                                    color: Colors.grey[400],
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              height: 200.0,
+                              child: Hero(
+                                tag: plant.heroTag,
+                                child: Image.asset(
+                                  plant.assetName,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    //color: Colors.red,
+                    padding: EdgeInsets.only(
+                      top: 25.0, right: 20.0
+                    ),
+                    
+                    alignment: Alignment.topRight,
+                    //color: Colors.red,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[InfoBox(), InfoBox(), InfoBox()],
+                    ),
+                  ),
+                ],
+              ),
+
+              //color: Colors.red,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class DetailsCard extends StatelessWidget {
+  final Plant plant;
+
+  DetailsCard(this.plant);
 
   @override
   Widget build(BuildContext context) {
@@ -300,6 +384,50 @@ class DetailsBody extends StatelessWidget {
             softWrap: true,
             maxLines: 50,
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class InfoBox extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //color: Colors.blue,
+      margin: EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5.0),
+            child: Text(
+              'Room temp',
+              style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.1),
+            ),
+          ),
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 5.0),
+                child: Icon(
+                  Icons.track_changes,
+                  color: Colors.lightGreen,
+                ),
+              ),
+              Text(
+                '25',
+                style: TextStyle(fontSize: 25.0, letterSpacing: 0.1),
+              ),
+              Text(
+                '°C',
+                style: TextStyle(fontSize: 25.0, color: Colors.grey[400]),
+              )
+            ],
+          )
         ],
       ),
     );
