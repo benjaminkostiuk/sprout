@@ -28,7 +28,7 @@ class PlantCard extends StatelessWidget {
               height: 70.0,
               padding: EdgeInsets.only(bottom: 8.0, top: 5.0),
               margin: EdgeInsets.only(
-                  top: 5.0, left: 12.0, bottom: 5.0, right: 12.0),
+                  top: 5.0, left: 20.0, bottom: 5.0, right: 8.0),
               child: Hero(
                 tag: plant.heroTag,
                 child: ClipRRect(
@@ -126,7 +126,7 @@ class PlantCardBody extends StatelessWidget {
     return Card(
       margin: EdgeInsets.only(right: 0.0, left: 0.0, top: 5.0, bottom: 5.0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(18.0)),
+        borderRadius: BorderRadius.all(Radius.circular(40.0)),
       ),
       child: child ?? Container(),
       color: color,
