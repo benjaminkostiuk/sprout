@@ -219,6 +219,40 @@ class _HomePageState extends State<HomePage>
                   WateringList(),
                   Container(
                     color: Colors.grey[200],
+                    child: MediaQuery.removePadding(
+                      context: context,
+                      removeTop: true,
+                      child: ListView(
+                        children: <Widget>[
+                          Stack(
+                            children: <Widget>[
+                              SizedBox(
+                                width: double.infinity,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.bottomRight,
+                                      end: Alignment.topLeft,
+                                      stops: [0.1, 0.45, 0.8, 0.9],
+                                      colors: [
+                                        Colors.lightGreen[800],
+                                        Colors.lightGreen[500],
+                                        Colors.lightGreen[400],
+                                        Colors.lightGreen[300],
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(60.0),
+                                    ),
+                                  ),
+                                  height: 245.0,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

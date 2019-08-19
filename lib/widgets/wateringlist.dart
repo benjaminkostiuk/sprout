@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:plant_life/widgets/plantcard.dart';
@@ -114,39 +115,44 @@ class WateringList extends StatefulWidget {
 }
 
 class _WateringListState extends State<WateringList> {
+
+  static Random rnd = Random();
+
   // Holds plant data
   Map<String, List<PlantCard>> plantData = {
     'Missed': [
       PlantCard(
-        Plant('Echeveria', 'Kitchen', 100, 'assets/flat_icons/imageonline-co-split-image (1).png', 0),
+        Plant('Echeveria', 'Kitchen', 100,
+            'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 0),
         key: Key('100'),
       ),
       PlantCard(
-        Plant('Hyacinth', 'Kitchen', 90, 'assets/planticon2.png', 0),
+        Plant('Hyacinth', 'Kitchen', 90, 'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 0),
         key: Key('101'),
       ),
     ],
     'Today': [
       PlantCard(
-        Plant('My Cactus', 'Kitchen', 75, 'assets/flat_icons/imageonline-co-split-image (2).png', 85),
+        Plant('My Cactus', 'Kitchen', 75,
+            'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 85),
         key: Key('102'),
       ),
       PlantCard(
-        Plant('Ficus', 'Kitchen', 90, 'assets/aloe_vera.jpg', 60),
+        Plant('Ficus', 'Kitchen', 90, 'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 60),
         key: Key('103'),
       ),
     ],
     'Tommorrow': [
       PlantCard(
-        Plant('Cactus', 'Kitchen', 75, 'assets/thorny-plant.jpg', 20),
+        Plant('Cactus', 'Kitchen', 75, 'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 20),
         key: Key('104'),
       ),
       PlantCard(
-        Plant('Ficus', 'Kitchen', 90, 'assets/aloe_vera.jpg', 60),
+        Plant('Ficus', 'Kitchen', 90, 'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 60),
         key: Key('105'),
       ),
       PlantCard(
-        Plant('Ficus', 'Kitchen', 90, 'assets/plant2.jpg', 60),
+        Plant('Ficus', 'Kitchen', 90, 'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 60),
         key: Key('106'),
       ),
     ]
@@ -171,25 +177,43 @@ class _WateringListState extends State<WateringList> {
                 SizedBox(
                   width: double.infinity,
                   child: Container(
-                    height: 245.0,
-                    child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(60.0),
-                          bottomRight: Radius.circular(60.0),
-                        ),
-                        child: Image.asset(
-                          'assets/heading.jpg',
-                          fit: BoxFit.fitWidth,
-                        ),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        stops: [0.1, 0.45, 0.8, 0.9],
+                        colors: [
+                          Colors.lightGreen[800],
+                          Colors.lightGreen[500],
+                          Colors.lightGreen[400],
+                          Colors.lightGreen[300],
+                        ],
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(60.0),
                       ),
                     ),
+                    height: 245.0,
+                    // child: FittedBox(
+                    //   fit: BoxFit.fill,
+                    //   child: Container(color: Colors.red,),
+                    //   // child: ClipRRect(
+                    //   //   borderRadius: BorderRadius.only(
+                    //   //     bottomLeft: Radius.circular(60.0),
+                    //   //     bottomRight: Radius.circular(0.0),
+                    //   //   ),
+
+                    //   //   child: Image.asset(
+                    //   //     'assets/heading.jpg',
+                    //   //     fit: BoxFit.fitWidth,
+                    //   //   ),
+                    //   // ),
+                    // ),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                      top: 120.0, left: 15.0, right: 15.0, bottom: 40.0),
+                      top: 120.0, left: 20.0, right: 15.0, bottom: 40.0),
                   child: Column(
                     children: <Widget>[
                       Row(

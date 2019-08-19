@@ -35,7 +35,7 @@ class PlantCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
                     plant.assetName,
-                    fit: BoxFit.fitHeight,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -66,7 +66,7 @@ class PlantCard extends StatelessWidget {
                             Icon(
                               CustomIcons.location,
                               size: 20.0,
-                              color: Colors.grey[500],
+                              color: Colors.orange[400],
                             ),
                             Padding(
                               padding: EdgeInsets.only(right: 4.0),
@@ -74,7 +74,7 @@ class PlantCard extends StatelessWidget {
                             Text(
                               plant.location,
                               style: TextStyle(
-                                  fontSize: 13.0, color: Colors.grey[500]),
+                                  fontSize: 15.0, color: Colors.grey[500]),
                             ),
                           ],
                         ),
@@ -85,7 +85,7 @@ class PlantCard extends StatelessWidget {
                             Icon(
                               CustomIcons.watering,
                               size: 20.0,
-                              color: Colors.grey[500],
+                              color: Colors.lightBlue[300],
                             ),
                             Padding(
                               padding: EdgeInsets.only(right: 4.0),
@@ -93,7 +93,7 @@ class PlantCard extends StatelessWidget {
                             Text(
                               plant.waterConsumption.toString() + ' ml',
                               style: TextStyle(
-                                fontSize: 13.0,
+                                fontSize: 14.0,
                                 color: Colors.grey[500],
                               ),
                             )
