@@ -15,7 +15,7 @@ class FabSubMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},   // This currently does not work but will be patched (so dumb) https://stackoverflow.com/questions/54653849/floatingactionbutton-onpressed-not-triggering
+      onPressed: () {},   // This currently does not work but will be patched eventually https://stackoverflow.com/questions/54653849/floatingactionbutton-onpressed-not-triggering
       backgroundColor: Colors.white,
       tooltip: tooltip,
       elevation: elevation,
@@ -61,8 +61,8 @@ class FabSubMenu extends StatelessWidget {
                         transition / 1.2, transition / 1.8, 0.0),
                     child: FabSubMenuItem(
                       onTap: onItemSelected,
-                      tooltip: 'Add Plant',
-                      iconData: CustomIcons.plant,
+                      tooltip: 'Add alert',
+                      iconData: Icons.notifications_active,
                       elevation: _subMenuElevation,
                     ),
                   ),
@@ -70,8 +70,8 @@ class FabSubMenu extends StatelessWidget {
                     transform: Matrix4.translationValues(0, transition, 0.0),
                     child: FabSubMenuItem(
                       onTap: onItemSelected,
-                      tooltip: 'Add droplet',
-                      iconData: CustomIcons.droplet,
+                      tooltip: 'Add plant',
+                      iconData: CustomIcons.plant,
                       elevation: _subMenuElevation,
                     ),
                   ),
