@@ -132,8 +132,7 @@ class DetailsBody extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Container(
-              //height: MediaQuery.of(context).size.height / 2.5,
-              padding: EdgeInsets.only(top: 50, left: 30.0, right: 5.0),
+              padding: EdgeInsets.only(top: 85, left: 30.0, right: 35.0),
               decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.only(
@@ -150,36 +149,42 @@ class DetailsBody extends StatelessWidget {
                       children: <Widget>[
                         Row(
                           children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(top: 35.0, bottom: 7.0),
-                              child: Text(
-                                plant.name,
-                                style: TextStyle(
-                                    color: Colors.grey[700],
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.w600),
+                            Flexible(
+                              child: Padding(
+                                padding:
+                                    EdgeInsets.only(bottom: 7.0, right: 12.0),
+                                child: Text(
+                                  plant.name,
+                                  style: TextStyle(
+                                      color: Colors.grey[700],
+                                      fontSize: 28.0,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ),
                             ),
                           ],
                         ),
                         Row(
                           children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(top: 0.0, bottom: 5.0),
-                              child: Text(
-                                '(Echinocactus Cereus)',
-                                style: TextStyle(
-                                    color: Colors.grey[400],
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.w700),
+                            Flexible(
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: 5.0),
+                                child: Text(
+                                  '(Echinocactus Cereus)',
+                                  style: TextStyle(
+                                      color: Colors.grey[400],
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(
-                              height: 200.0,
+                              height: 190.0,
                               child: Hero(
                                 tag: plant.heroTag,
                                 child: Image.asset(
@@ -193,20 +198,15 @@ class DetailsBody extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    //color: Colors.red,
-                    padding: EdgeInsets.only(
-                      top: 25.0, right: 20.0
-                    ),
-                    
-                    alignment: Alignment.topRight,
-                    //color: Colors.red,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[InfoBox(), InfoBox(), InfoBox()],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      InfoBox(Icons.track_changes, 25, '°C'),
+                      InfoBox(Icons.track_changes, 60, '%'),
+                      InfoBox(Icons.track_changes, 30, 'mL'),
+                    ],
                   ),
                 ],
               ),
@@ -391,11 +391,17 @@ class DetailsCard extends StatelessWidget {
 }
 
 class InfoBox extends StatelessWidget {
+  final IconData iconName;
+  final int data;
+  final String symbol;
+
+  InfoBox(this.iconName, this.data, this.symbol);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       //color: Colors.blue,
-      margin: EdgeInsets.all(15.0),
+      margin: EdgeInsets.only(top: 12.0, bottom: 12.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -414,16 +420,16 @@ class InfoBox extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: 5.0),
                 child: Icon(
-                  Icons.track_changes,
+                  iconName,
                   color: Colors.lightGreen,
                 ),
               ),
               Text(
-                '25',
+                data.toString(),
                 style: TextStyle(fontSize: 25.0, letterSpacing: 0.1),
               ),
               Text(
-                '°C',
+                symbol,
                 style: TextStyle(fontSize: 25.0, color: Colors.grey[400]),
               )
             ],
