@@ -133,7 +133,7 @@ class _WateringListState extends State<WateringList> {
     ],
     'Today': [
       PlantCard(
-        Plant('My Cactus', 'Kitchen', 75,
+        Plant('Green and Blue cactus with a really long name', 'Kitchen sink and bath', 75,
             'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 85),
         key: Key('102'),
       ),
@@ -144,7 +144,7 @@ class _WateringListState extends State<WateringList> {
     ],
     'Tommorrow': [
       PlantCard(
-        Plant('Cactus', 'Kitchen', 75, 'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 20),
+        Plant('Cactus', 'Bedroom counter', 75, 'assets/plant_icons/plant' + (1 + rnd.nextInt(15)).toString() + '.png', 20),
         key: Key('104'),
       ),
       PlantCard(
