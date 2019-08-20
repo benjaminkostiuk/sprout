@@ -6,6 +6,8 @@ import 'package:plant_life/models/plant.dart';
 import 'package:plant_life/widgets/plantcard.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+import 'package:plant_life/icons/custom_icons_icons.dart';
+
 class PlantDetails extends StatefulWidget {
   final Plant plant;
   PlantDetails(this.plant);
@@ -15,13 +17,17 @@ class PlantDetails extends StatefulWidget {
 }
 
 class _PlantDetailsState extends State<PlantDetails>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   double _panelPosition; // To keep track of the pannel's position
   Timer _timer; // Used for the delay to create a sliding animation
   PanelController _panelController;
 
   AnimationController _animationController;
   Animation<double> _animationValue;
+
+  AnimationController _notificationController;
+  Animation<Color> _notificationColor;
+  bool isNotificationOn = false;
 
   @override
   void initState() {
@@ -31,11 +37,24 @@ class _PlantDetailsState extends State<PlantDetails>
           ..addListener(() {
             setState(() {});
           });
+
+    _notificationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 250))
+          ..addListener(() {
+            setState(() {});
+          });
+    _notificationColor =
+        ColorTween(begin: Colors.lightGreen, end: Colors.grey[400]).animate(
+            CurvedAnimation(
+                parent: _notificationController, curve: Curves.ease));
+    _notificationController.forward();
     super.initState();
   }
 
   @override
   void dispose() {
+    _animationController.dispose();
+    _notificationController.dispose();
     super.dispose();
   }
 
@@ -96,18 +115,24 @@ class _PlantDetailsState extends State<PlantDetails>
             ),
           ),
           Positioned(
-            bottom: _panelPosition ?? _animationValue.value - 40,
+            bottom: _panelPosition ?? _animationValue.value - 35,
             left: MediaQuery.of(context).size.width / 1.4,
             child: Container(
-              height: 85.0,
-              width: 85.0,
+              height: 75.0,
+              width: 75.0,
               child: FloatingActionButton(
                 heroTag: null,
-                onPressed: () {},
+                onPressed: () {
+                  isNotificationOn
+                      ? _notificationController.forward()
+                      : _notificationController.reverse();
+                  isNotificationOn = !isNotificationOn;
+                },
                 backgroundColor: Colors.white,
-                child: Container(
-                  child: DropletIndicator(
-                      widget.plant.currentPercentage, widget.plant.isDry),
+                child: Icon(
+                  Icons.notifications_active,
+                  color: _notificationColor.value,
+                  size: 28.0,
                 ),
               ),
             ),
@@ -203,9 +228,9 @@ class DetailsBody extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      InfoBox(Icons.track_changes, 25, '°C'),
-                      InfoBox(Icons.track_changes, 60, '%'),
-                      InfoBox(Icons.track_changes, 30, 'mL'),
+                      InfoBox(CustomIcons.temperatire, 'Room temp', 25, '°C'),
+                      InfoBox(CustomIcons.sun, 'Light', 60, '%'),
+                      InfoBox(CustomIcons.water, 'Hydration', 30, 'ml'),
                     ],
                   ),
                 ],
@@ -392,10 +417,11 @@ class DetailsCard extends StatelessWidget {
 
 class InfoBox extends StatelessWidget {
   final IconData iconName;
+  final String name;
   final int data;
   final String symbol;
 
-  InfoBox(this.iconName, this.data, this.symbol);
+  InfoBox(this.iconName, this.name, this.data, this.symbol);
 
   @override
   Widget build(BuildContext context) {
@@ -408,7 +434,7 @@ class InfoBox extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 5.0),
             child: Text(
-              'Room temp',
+              name,
               style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
