@@ -23,12 +23,11 @@ class PlantCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Container(
-              //color: Colors.red,
               width: 55.0,
               height: 70.0,
               padding: EdgeInsets.only(bottom: 8.0, top: 5.0),
               margin: EdgeInsets.only(
-                  top: 5.0, left: 20.0, bottom: 5.0, right: 8.0),
+                  top: 5.0, left: 20.0, bottom: 5.0, right: 6.0),
               child: Hero(
                 tag: plant.heroTag,
                 child: ClipRRect(
@@ -46,19 +45,26 @@ class PlantCard extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text(
-                        plant.name,
-                        style: TextStyle(
-                            color: Colors.grey[600],
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600),
-                      )
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Text(
+                          plant.name,
+                          overflow: TextOverflow.fade,
+                          maxLines: 1,
+                          softWrap: false,
+                          style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ],
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 5.0),
                   ),
                   Row(
+                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: Row(
@@ -71,15 +77,21 @@ class PlantCard extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(right: 4.0),
                             ),
-                            Text(
-                              plant.location,
-                              style: TextStyle(
-                                  fontSize: 15.0, color: Colors.grey[500]),
+                            Flexible(
+                              child: Text(
+                                plant.location,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                softWrap: false,
+                                style: TextStyle(
+                                    fontSize: 15.0, color: Colors.grey[500]),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      Expanded(
+                      Padding(
+                        padding: EdgeInsets.only(right: 4.0, left: 2.0),
                         child: Row(
                           children: <Widget>[
                             Icon(
@@ -99,14 +111,14 @@ class PlantCard extends StatelessWidget {
                             )
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
             Container(
-              margin: EdgeInsets.only(right: 25.0),
+              margin: EdgeInsets.only(right: 25.0, left: 10.0),
               child: DropletIndicator(plant.currentPercentage, plant.isDry),
             )
           ],
