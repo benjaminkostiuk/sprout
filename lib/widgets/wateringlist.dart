@@ -216,7 +216,7 @@ class _WateringListState extends State<WateringList> {
       child: MediaQuery.removePadding(
         context: context,
         removeTop: true,
-        removeBottom: true,
+        //removeBottom: true,
         child: ListView(
           children: <Widget>[
             Stack(
@@ -232,7 +232,7 @@ class _WateringListState extends State<WateringList> {
                 ),
                 Container(
                   padding: EdgeInsets.only(
-                      top: 120.0, left: 20.0, right: 15.0, bottom: 0.0),
+                      top: 120.0, left: 20.0, right: 15.0, bottom: 40.0),
                   child: Column(
                     children: <Widget>[
                       Row(
@@ -279,19 +279,15 @@ class _WateringListState extends State<WateringList> {
                 ),
               ],
             ),
-            MediaQuery.removePadding(
-              context: context,
-              removeBottom: true,
-              child: SizedBox(
-                child: Container(
-                  decoration: BoxDecoration(),
-                  child: Image.asset(
-                    'assets/backdrop_bottom2.png',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-              ),
-            ),
+            // SizedBox(
+            //   child: Container(
+            //     decoration: BoxDecoration(),
+            //     child: Image.asset(
+            //       'assets/backdrop_bottom2.png',
+            //       fit: BoxFit.fitWidth,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
