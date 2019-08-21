@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "230801491173",
+    "firebase_url": "https://plant-life-3a3ea.firebaseio.com",
+    "project_id": "plant-life-3a3ea",
+    "storage_bucket": "plant-life-3a3ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230801491173:android:f1d2dec2e949fd07",
+        "android_client_info": {
+          "package_name": "com.example.plant_life"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "230801491173-uvls43739185d4qfsdofutpn3heke4nk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.plant_life",
+            "certificate_hash": "b475b6110b6001146d6f2d389bd204e304b65ec8"
+          }
+        },
+        {
+          "client_id": "230801491173-e3hbo1t1j1hcq0vgvj35o61ptfiv79kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWhV-gbXAJW_MzCWNyOngqnUi_olzWV0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "230801491173-e3hbo1t1j1hcq0vgvj35o61ptfiv79kr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
