@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:plant_life/screens/add.dart';
@@ -7,9 +6,7 @@ import 'package:plant_life/screens/details.dart';
 import 'package:plant_life/screens/home.dart';
 import 'package:plant_life/screens/sign_in.dart';
 import 'package:plant_life/services/auth.dart';
-
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 void main() => runApp(PlantApp());
 
