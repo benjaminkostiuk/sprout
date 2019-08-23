@@ -13,23 +13,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 void main() => runApp(PlantApp());
 
-// class PlantApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Plant Life',
-//       initialRoute: '/',
-//       routes: {
-//         '/': (context) => HomePage(),
-//         '/details': (context) => PlantDetails(null),
-//         '/calendar': (context) => CalendarPage(),
-//         '/add': (context) => PlantAddPage(''),
-//       },
-//     );
-//   }
-// }
-
 class PlantApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,11 +20,16 @@ class PlantApp extends StatelessWidget {
       builder: (_) => FirebaseAuthService(),
       dispose: (_, AuthService authService) => authService.dispose(),
       child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.indigo,
-        ),
-        home: LandingPage(),
+      debugShowCheckedModeBanner: false,
+      title: 'Plant Life',
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LandingPage(),
+        '/home': (context) => HomePage(),
+        '/details': (context) => PlantDetails(null),
+        '/calendar': (context) => CalendarPage(),
+        '/add': (context) => PlantAddPage(''),
+      },
       ),
     );
   }
@@ -59,8 +47,9 @@ class LandingPage extends StatelessWidget {
           if (user == null) {
             return SignInPage();
           }
-          return HomePage2();
+          return HomePage();
         } else {
+          // Add something for loading
           return Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -68,38 +57,6 @@ class LandingPage extends StatelessWidget {
           );
         }
       },
-    );
-  }
-}
-
-class HomePage2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    Future<void> _signOut() async {
-      try {
-        final firebaseAuth = Provider.of<AuthService>(context);
-        await firebaseAuth.signOut();
-      } catch (e) {
-        print(e); // TODO: show dialog with error
-      }
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text(
-              'Logout',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.white,
-              ),
-            ),
-            onPressed: _signOut,
-          ),
-        ],
-      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:plant_life/services/auth.dart';
+import 'package:provider/provider.dart';
 import 'package:rect_getter/rect_getter.dart';
 
 import 'package:plant_life/screens/calendar.dart';
@@ -237,7 +239,28 @@ class _HomePageState extends State<HomePage>
                                 ),
                               ),
                             ],
-                          )
+                          ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40.0)),
+                            color: Colors.white,
+                            child: Text(
+                              'Logout',
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.lightGreen,
+                              ),
+                            ),
+                            onPressed: () async {
+                              try {
+                                final firebaseAuth =
+                                    Provider.of<AuthService>(context);
+                                await firebaseAuth.signOut();
+                              } catch (e) {
+                                print(e); // TODO: show dialog with error
+                              }
+                            },
+                          ),
                         ],
                       ),
                     ),
