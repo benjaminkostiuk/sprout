@@ -1,12 +1,24 @@
 # plant_life
 
-A new Flutter project.
+Keep an eye on the important plants in your life. Set watering schedules, read up on their particularities
+and get daily reminders to keep up in your busy life
+
+This project is a work in progress.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+* Clone the repository with `git clone`
+* Ensure your flutter setup is optimal with `flutter doctor`
+* Fetch packages with `flutter pub get`
+* Run the app with `flutter run`
 
-A few resources to get you started if this is your first Flutter project:
+## Gallery
+<p float="left">
+    <img src="./gallery/Screenshot_20191126-200815.jpg" width="48%"/>
+    <img src="./gallery/Screenshot_20191126-200831.jpg" width="48%"/>
+</p>
+
+## Resources
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
