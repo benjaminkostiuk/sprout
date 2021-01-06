@@ -1,9 +1,9 @@
-# plant_life
+# Sprout
 
 Keep an eye on the important plants in your life. Set watering schedules, read up on their particularities
 and get daily reminders to keep up in your busy life
 
-This project is a work in progress.
+This project is UI prototype for future plant life mobile application.
 
 ## Getting Started
 
@@ -18,7 +18,7 @@ This project is a work in progress.
     <img src="./gallery/Screenshot_20191126-200831.jpg" width="48%"/>
 </p>
 
-## Resources
+## Other Flutter Resources
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
